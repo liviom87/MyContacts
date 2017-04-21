@@ -24,18 +24,15 @@ public class Login extends HttpServlet {
 		String password = request.getParameter("password");
 
 		if (username.equals("user") && password.equals("pass")) {
-			response.sendRedirect("success.html");
+			response.sendRedirect("list.jsp");
 
-			logger.info("Allow access to" + username);
+			logger.info("Accesso consentito" + username);
 		} else {
-			response.sendRedirect("error.html");
-			logger.warning("Access denied");
+			response.sendRedirect("login.jsp");
+			logger.warning("Accesso negato");
 		}
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		doGet(request, response);
-	}
+	
 
 }
