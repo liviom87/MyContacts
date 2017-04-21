@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import it.overnet.dao.CRUD;
+
 @WebServlet("/Login")
 public class Login extends HttpServlet {
 
@@ -23,17 +25,25 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
+		try {
+			boolean a;
+			a = CRUD.createTable();
+			String username = request.getParameter("username");
+			String password = request.getParameter("password");
 
-		if (username.equals("user") && password.equals("pass")) {
-			response.sendRedirect("List");
+			if (username.equals("user") && password.equals("pass")) {
+				response.sendRedirect("List");
 
-			logger.info("Accesso consentito " + username);
-		} else {
-			logger.warning("Accesso negato");
-			response.sendRedirect("Login");
+				logger.info("Accesso consentito " + username);
+			} else {
+				logger.warning("Accesso negato");
+				response.sendRedirect("Login");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+
 	}
 
 }
