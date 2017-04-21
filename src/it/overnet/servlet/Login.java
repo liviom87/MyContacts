@@ -17,17 +17,22 @@ public class Login extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.getRequestDispatcher("login.jsp").forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 
 		if (username.equals("user") && password.equals("pass")) {
-			response.sendRedirect("list.jsp");
+			response.sendRedirect("List");
 
-			logger.info("Accesso consentito" + username);
+			logger.info("Accesso consentito " + username);
 		} else {
-			response.sendRedirect("login.jsp");
 			logger.warning("Accesso negato");
+			response.sendRedirect("Login");
 		}
 	}
 
