@@ -7,6 +7,7 @@ public class Contact {
 	String cognome;
 	String tel;
 	String mail;
+	
 	public int getId() {
 		return id;
 	}

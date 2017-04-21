@@ -50,8 +50,8 @@
 
 				Le credenziali di accesso sono:
 				<ul>
-					<li>admin</li>
-					<li>admin</li>
+					<li>user</li>
+					<li>pass</li>
 				</ul>
 
 				<div
