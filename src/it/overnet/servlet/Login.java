@@ -21,11 +21,14 @@ public class Login extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 
-	}
+		if (username.equals("user") && password.equals("pass")) {
+			response.sendRedirect("list.jsp");
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		doGet(request, response);
+			logger.info("Accesso consentito" + username);
+		} else {
+			response.sendRedirect("login.jsp");
+			logger.warning("Accesso negato");
+		}
 	}
 
 }
