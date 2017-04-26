@@ -32,12 +32,12 @@ public class Login extends HttpServlet {
 			String password = request.getParameter("password");
 
 			if (username.equals("user") && password.equals("pass")) {
-				response.sendRedirect("List");
+				response.sendRedirect("list.jsp");
 
 				logger.info("Accesso consentito " + username);
 			} else {
 				logger.warning("Accesso negato");
-				response.sendRedirect("Login");
+				response.sendRedirect("login.jsp");
 			}
 
 		} catch (Exception e) {
