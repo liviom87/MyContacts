@@ -64,7 +64,7 @@
 							<span class="input-group-addon"><span
 								class="glyphicon glyphicon-user" aria-hidden="true"></span></span> <input
 								type="text" class="form-control" id="username" name="username"
-								value="" placeholder="Inserisci username" />
+								value="" placeholder="Inserisci username" required/>
 						</div>
 						<c:if test="${not empty param.error}">
 							<span class="glyphicon glyphicon-remove form-control-feedback"
@@ -81,7 +81,7 @@
 							<span class="input-group-addon"><span
 								class="glyphicon glyphicon-lock" aria-hidden="true"></span></span> <input
 								class="form-control" id="password" type="password"
-								name="password" value="" placeholder="Inserisci password" />
+								name="password" value="" placeholder="Inserisci password" required/>
 						</div>
 						<c:if test="${not empty param.error}">
 							<span class="glyphicon glyphicon-remove form-control-feedback"
