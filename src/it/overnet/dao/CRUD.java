@@ -13,7 +13,6 @@ public class CRUD {
 
 		Connection dbConnection = null;
 		Statement statement = null;
-		ResultSet resultSet = null;
 
 		boolean check = false;
 
@@ -27,17 +26,13 @@ public class CRUD {
 			statement = dbConnection.createStatement();
 
 			System.out.println(createTableSQL);
-			statement.execute(createTableSQL);
-			resultSet = statement.executeQuery(createTableSQL);
 
-			if (statement.execute(createTableSQL))
-				check = true;
-			if (resultSet.next()) {
-				check = true;
-			}
+			statement.execute(createTableSQL);
+
 			System.out.println("Tabella \"LISTA_CONTATTI\" creata con successo!");
 
 		} catch (SQLException e) {
+
 			System.err.println(e.getMessage());
 
 		} finally {
@@ -54,3 +49,4 @@ public class CRUD {
 		return check;
 	}
 }
+
