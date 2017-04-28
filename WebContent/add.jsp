@@ -8,5 +8,16 @@
 </head>
 <body>
 
+<form action="SaveContact" method="post">
+
+		<input type="text" name="nome" placeholder="Inserisci nome" required> <br>
+		<input type="text" name="cognome" placeholder="Inserisci cognome" required><br>
+		<input type="text" name="tel" placeholder="Inserisci telefono" required> <br>
+		<input type="text" name="mail" placeholder="Inserisci mail" required><br>
+		
+		<input type="submit" value="Salva">
+
+	</form>
+
 </body>
 </html>

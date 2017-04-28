@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import it.overnet.dao.CRUD;
+import it.overnet.dao.ContactDao;
 
 @WebServlet("/Login")
 public class Login extends HttpServlet {
@@ -32,7 +32,7 @@ public class Login extends HttpServlet {
 			HttpSession session = request.getSession();
 
 			if (username.equals("user") && password.equals("pass")) {
-				CRUD.createTable();
+				ContactDao.createTable();
 				session.setAttribute("logged", true);
 				response.sendRedirect("List");
 				logger.info("Accesso consentito " + username);
