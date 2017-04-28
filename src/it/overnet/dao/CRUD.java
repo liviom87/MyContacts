@@ -1,11 +1,13 @@
 package it.overnet.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Logger;
 
+import it.overnet.models.Contact;
 import it.overnet.utilities.DBUtilityConnection;
 
 public class CRUD {
@@ -46,4 +48,55 @@ public class CRUD {
 		}
 		return check;
 	}
+
+	public static boolean insertRecordIntoTable(Contact contatto) throws Exception {
+		Connection dbConnection = null;
+		PreparedStatement preparedStatement = null;
+		
+		String insertTableSQL = "INSERT INTO CONTACT" + "(ID, NOME, COGNOME, TEL, MAIL) VALUES" + "(default,?,?,?,?)";
+		
+		ResultSet resulSet = null;
+		Statement statement = null;
+		boolean check = false;
+		
+		try {
+			dbConnection = DBUtilityConnection.getDBConnection();
+			preparedStatement = dbConnection.prepareStatement(insertTableSQL);
+			statement = dbConnection.prepareStatement(insertTableSQL);
+			preparedStatement.setString(1, contatto.getNome());
+			preparedStatement.setString(2, contatto.getCognome());
+			preparedStatement.setString(3, contatto.getTel());
+			preparedStatement.setString(4, contatto.getMail());
+			
+			// execute insert SQL statement
+			preparedStatement.executeUpdate();
+			
+			resulSet = statement.executeQuery(insertTableSQL);
+			if (resulSet.next()) {
+				check = true;
+			}
+			logger.info("Record inserito nella tabella REGISTRATION!");
+
+		} catch (SQLException e) {
+
+			logger.warning(e.getMessage());
+
+		} finally {
+
+			if (preparedStatement != null) {
+				preparedStatement.close();
+			}
+
+			if (dbConnection != null) {
+				dbConnection.close();
+			}
+
+		}
+		return check;
+	}
+			
+			
+		
+
 }
+
