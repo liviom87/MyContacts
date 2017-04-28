@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import it.overnet.dao.CRUD;
 
@@ -26,18 +27,18 @@ public class Login extends HttpServlet {
 			throws ServletException, IOException {
 
 		try {
-			boolean a;
-			a = CRUD.createTable();
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
+			HttpSession session = request.getSession();
 
 			if (username.equals("user") && password.equals("pass")) {
-				response.sendRedirect("list.jsp");
-
+				CRUD.createTable();
+				session.setAttribute("logged", true);
+				response.sendRedirect("List");
 				logger.info("Accesso consentito " + username);
 			} else {
 				logger.warning("Accesso negato");
-				response.sendRedirect("login.jsp");
+				response.sendRedirect("Login");
 			}
 
 		} catch (Exception e) {
